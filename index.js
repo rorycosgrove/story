@@ -23,23 +23,22 @@ app.set('view engine', 'pug')
 let story = [new Paragraph(0, 0, "It was a dark and stormy night")]
 
 app.get(`/`, async (req, res) => {
-    res.render('index', { title: 'Hey', message: 'Hello there!', story: story, depth: 0 })
+    res.render('index', { title: 'Home', story: story, depth: 0 })
 })
 
 app.get(`/:depth`, async (req, res) => {
     let currentDepth = (req.params.depth == null ? 0 : req.params.depth)
-
-    res.render('index', { title: 'Hey', message: 'Hello there!', story: story, depth: currentDepth })
+    res.render('index', { title: 'Get Item', story: story, depth: currentDepth })
 })
 
 
 app.post(`/:depth`, async (req, res) => {
     let currentDepth = (req.params.depth == null ? 0 : parseInt(req.params.depth))
-    story[currentDepth] = req.body
-    story.push(new Paragraph(story.length, currentDepth, req.body.sentence1))
+    story[currentDepth] = new Paragraph(req.body.depth, req.body.parent,req.body.root,new Sentence(req.body.sentence1,story.length))
+    story.push(new Paragraph(story.length, currentDepth, new Sentence(req.body.sentence1)))
     console.log(story)
     console.log(req.body.title)
-    res.render('index', { title: 'Hey', message: 'Hello there!', story: story, depth: currentDepth })
+    res.render('index', { title: 'Post ', story: story, depth: currentDepth })
 })
 app.listen(port, () => console.log("listening on port " + port))
 
