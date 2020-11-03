@@ -1,6 +1,6 @@
 class Sentence {
 
-    constructor(text, next){
+    constructor(text, next=0){
       this.text = text
       this.next = next
     }

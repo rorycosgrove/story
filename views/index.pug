@@ -18,7 +18,7 @@ html
                             else
                                 div.text-center
                                 p  
-                                a(href='/'+ next)  #{story[depth].sentence1}
+                                a(href='/'+ story[depth].sentence1.next)  #{story[depth].sentence1.text}
                             br
                             
                             input(type='hidden' name='sentence2' value=story[depth].sentence2)
