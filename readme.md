@@ -2,17 +2,21 @@
 
 ## Description
 ____________________________________________________________________
-A simple JavaScript API using Node and Express which allows a user 
+A simple JavaScript API using Node, Express and Pug which allows a user 
 to create a story.
 
 ## Installation
 ____________________________________________________________________
-Blah
+ <ol>
+ <li> Extract the zip file to a new folder </li>
+ <li> run npm install</li>
+ <li></li>
 
 ## Approach
 ____________________________________________________________________
 
-approach to designing and implementing this application, 
+
+
 
 ## Shortcuts
 ____________________________________________________________________
