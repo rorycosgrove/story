@@ -41,5 +41,5 @@ ____________________________________________________________________
 <li>Ability to create a minimum viable product within a short deadline</li>
 <li>Knowledge of REST principles and best practices</li>
 <li>Efficient use of data structures</li>
-<li>Paying attention to the restrictions as as to deliver the requirements as described</li>
+<li>Paying attention to the restrictions so as to deliver the requirements as described</li>
 </ol>
