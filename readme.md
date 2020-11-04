@@ -9,6 +9,7 @@ user to create a story with multiple paths.
  <li> Extract the zip file to a new folder </li>
  <li> npm install</li>
  <li> npm start</li>
+ <li> The application will be available at http://localhost:3000</li>
 </ol>
 
 ## Approach
