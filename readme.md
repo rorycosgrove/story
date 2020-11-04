@@ -1,12 +1,10 @@
 # Story
 
 ## Description
-____________________________________________________________________
 A simple JavaScript API using Node, Express and Pug which allows a 
 user to create a story with multiple paths.
 
 ## Installation
-____________________________________________________________________
  <ol>
  <li> Extract the zip file to a new folder </li>
  <li> npm install</li>
@@ -14,7 +12,6 @@ ____________________________________________________________________
 </ol>
 
 ## Approach
-____________________________________________________________________
 Keep it simple and as clean as possible in the time available.
 <ul>
 <li>A story is an array of paragraphs</li>
@@ -25,7 +22,6 @@ Keep it simple and as clean as possible in the time available.
 
 
 ## Shortcuts
-____________________________________________________________________
 <ul>
 <li>The initial root sentence is hard coded</li>
 <li>The paragraph object should hold an array of sentences</li>
@@ -35,7 +31,6 @@ ____________________________________________________________________
 
 
 ## What is being tested?
-____________________________________________________________________
 <ol>
 <li>Me!</li>
 <li>Ability to create a minimum viable product within a short deadline</li>
