@@ -24,44 +24,34 @@ app.get(`/:index`, async (req, res) => {
 app.post(`/:index/:sentence`, async (req, res) => {
     let currentIndex = (req.params.index == null ? 0 : parseInt(req.params.index))
     let currentSentence = (req.params.sentence == null ? 0 : parseInt(req.params.sentence))
-    
+    let update = 
+    new Paragraph(
+        req.body.index,
+        new Sentence(JSON.parse(req.body.root).text),
+        new Sentence(story[currentIndex].sentence1.text, story[currentIndex].sentence1.next),
+        new Sentence(story[currentIndex].sentence2.text, story[currentIndex].sentence2.next),
+        new Sentence(story[currentIndex].sentence3.text, story[currentIndex].sentence3.next),
+        new Sentence(story[currentIndex].sentence4.text, story[currentIndex].sentence4.next))
+
     switch (currentSentence) {
         case 1:
-            story[currentIndex] = new Paragraph(
-                req.body.index,
-                new Sentence(JSON.parse(req.body.root).text),
-                new Sentence(req.body.sentence1, story.length))
+            update.sentence1 = new Sentence(req.body.sentence1, story.length)
             story.push(new Paragraph(story.length, new Sentence(req.body.sentence1)))
             break
         case 2:
-            story[currentIndex] = new Paragraph(
-                req.body.index,
-                new Sentence(JSON.parse(req.body.root).text),
-                new Sentence(story[currentIndex].sentence1.text, story[currentIndex].sentence1.next),
-                new Sentence(req.body.sentence2, story.length))
+            update.sentence2 = new Sentence(req.body.sentence2, story.length)
             story.push(new Paragraph(story.length, new Sentence(req.body.sentence2)))
             break
         case 3:
-            story[currentIndex] = new Paragraph(
-                req.body.index,
-                new Sentence(JSON.parse(req.body.root).text),
-                new Sentence(story[currentIndex].sentence1.text, story[currentIndex].sentence1.next),
-                new Sentence(story[currentIndex].sentence2.text, story[currentIndex].sentence2.next),
-                new Sentence(req.body.sentence3, story.length))
+            update.sentence3 = new Sentence(req.body.sentence3, story.length)
             story.push(new Paragraph(story.length, new Sentence(req.body.sentence3)))
             break
         case 4:
-            story[currentIndex] = new Paragraph(
-                req.body.index,
-                new Sentence(JSON.parse(req.body.root).text),
-                new Sentence(story[currentIndex].sentence1.text, story[currentIndex].sentence1.next),
-                new Sentence(story[currentIndex].sentence2.text, story[currentIndex].sentence2.next),
-                new Sentence(story[currentIndex].sentence3.text, story[currentIndex].sentence3.next),
-                new Sentence(req.body.sentence4, story.length))
+            update.sentence4 = new Sentence(req.body.sentence4, story.length)
             story.push(new Paragraph(story.length, new Sentence(req.body.sentence4)))
             break
     }
-
+    story[currentIndex] = update
     console.log(story)
     res.render('index', { title: 'Post ', story: story, index: currentIndex })
 })
