@@ -34,7 +34,8 @@ Keep it simple and as clean as possible in the time available.
 <ol>
 <li>Me!</li>
 <li>Ability to create a minimum viable product within a short deadline</li>
+<li>Working without client side JavaScript</li>
 <li>Knowledge of REST principles and best practices</li>
 <li>Efficient use of data structures</li>
-<li>Paying attention to the restrictions so as to deliver the requirements as described</li>
+<li>Paying attention to the restrictions so as to deliver the requirements as perscribed</li>
 </ol>
