@@ -1,44 +1,69 @@
 const express = require('express')
-
-const router = express.Router();
+const bodyParser = require('body-parser')
 const Paragraph = require('./paragraph.js')
 const Sentence = require('./sentence.js')
-//const offerRoutes = require('./routes/offer.js')
-//const productRoutes = require('./routes/product.js')
-const bodyParser = require('body-parser')
 
 const app = express();
 const port = 3000;
-const version = 1;
 
-
-//app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'pug')
 
-//app.use('/offers', offerRoutes)
-//app.use('/products', productRoutes)
-//res.status(200).send("<table border=1><tr><td>hello</td></tr><tr><td>hello</td></tr><tr><td>hello</td></tr><tr><td>hello</td></tr></table>");
-
-let story = [new Paragraph(0, 0, "It was a dark and stormy night")]
+let story = []
+story.push(new Paragraph(story.length, new Sentence("It was a dark and stormy night")))
 
 app.get(`/`, async (req, res) => {
-    res.render('index', { title: 'Home', story: story, depth: 0 })
+    res.render('index', { title: 'Home', story: story, index: 0 })
 })
 
-app.get(`/:depth`, async (req, res) => {
-    let currentDepth = (req.params.depth == null ? 0 : req.params.depth)
-    res.render('index', { title: 'Get Item', story: story, depth: currentDepth })
+app.get(`/:index`, async (req, res) => {
+    let currentIndex = (req.params.index == null ? 0 : req.params.index)
+    res.render('index', { title: 'Get Item', story: story, index: currentIndex })
 })
 
+app.post(`/:index/:sentence`, async (req, res) => {
+    let currentIndex = (req.params.index == null ? 0 : parseInt(req.params.index))
+    let currentSentence = (req.params.sentence == null ? 0 : parseInt(req.params.sentence))
+    
+    switch (currentSentence) {
+        case 1:
+            story[currentIndex] = new Paragraph(
+                req.body.index,
+                new Sentence(JSON.parse(req.body.root).text),
+                new Sentence(req.body.sentence1, story.length))
+            story.push(new Paragraph(story.length, new Sentence(req.body.sentence1)))
+            break
+        case 2:
+            story[currentIndex] = new Paragraph(
+                req.body.index,
+                new Sentence(JSON.parse(req.body.root).text),
+                new Sentence(story[currentIndex].sentence1.text, story[currentIndex].sentence1.next),
+                new Sentence(req.body.sentence2, story.length))
+            story.push(new Paragraph(story.length, new Sentence(req.body.sentence2)))
+            break
+        case 3:
+            story[currentIndex] = new Paragraph(
+                req.body.index,
+                new Sentence(JSON.parse(req.body.root).text),
+                new Sentence(story[currentIndex].sentence1.text, story[currentIndex].sentence1.next),
+                new Sentence(story[currentIndex].sentence2.text, story[currentIndex].sentence2.next),
+                new Sentence(req.body.sentence3, story.length))
+            story.push(new Paragraph(story.length, new Sentence(req.body.sentence3)))
+            break
+        case 4:
+            story[currentIndex] = new Paragraph(
+                req.body.index,
+                new Sentence(JSON.parse(req.body.root).text),
+                new Sentence(story[currentIndex].sentence1.text, story[currentIndex].sentence1.next),
+                new Sentence(story[currentIndex].sentence2.text, story[currentIndex].sentence2.next),
+                new Sentence(story[currentIndex].sentence3.text, story[currentIndex].sentence3.next),
+                new Sentence(req.body.sentence4, story.length))
+            story.push(new Paragraph(story.length, new Sentence(req.body.sentence4)))
+            break
+    }
 
-app.post(`/:depth`, async (req, res) => {
-    let currentDepth = (req.params.depth == null ? 0 : parseInt(req.params.depth))
-    story[currentDepth] = new Paragraph(req.body.depth, req.body.parent,req.body.root,new Sentence(req.body.sentence1,story.length))
-    story.push(new Paragraph(story.length, currentDepth, new Sentence(req.body.sentence1)))
     console.log(story)
-    console.log(req.body.title)
-    res.render('index', { title: 'Post ', story: story, depth: currentDepth })
+    res.render('index', { title: 'Post ', story: story, index: currentIndex })
 })
 app.listen(port, () => console.log("listening on port " + port))
 

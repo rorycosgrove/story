@@ -9,81 +9,151 @@ html
                 tr
                     td 
                     td 
-                        form(action=`/` + parseInt(depth)  method='POST')
-                            
-                            if story[depth].sentence1 == ''
+                        form(action=`/` + parseInt(index) + '/1' method='POST')
+
+                            if story[index].sentence1.text == ''
                                 div.input
                                     textarea(name="sentence1")
                                 input(value='Submit' type='submit')
                             else
                                 div.text-center
                                 p  
-                                a(href='/'+ story[depth].sentence1.next)  #{story[depth].sentence1.text}
+                                a(href='/'+ story[index].sentence1.next)  #{story[index].sentence1.text}
                             br
-                            
-                            input(type='hidden' name='sentence2' value=story[depth].sentence2)
-                            input(type='hidden' name='sentence3' value=story[depth].sentence3)
-                            input(type='hidden' name='sentence4' value=story[depth].sentence4)
-                            input(type='hidden' name='parent' value=story[depth].parent)
-                            input(type='hidden' name='root' value=story[depth].root)
-                            input(type='hidden' name='depth' value=depth)
+
+                            input(type='hidden' name='sentence2' value=story[index].sentence2)
+                            input(type='hidden' name='sentence3' value=story[index].sentence3)
+                            input(type='hidden' name='sentence4' value=story[index].sentence4)
+                            input(type='hidden' name='root' value=story[index].root)
+                            input(type='hidden' name='index' value=index)
                     td 
                 tr
                     td 
-                        form(action='/'+ parseInt(depth) method='POST')
+                        form(action='/'+ parseInt(index) +'/2' method='POST')
 
-                            input(type='hidden' name='sentence1' value=story[depth].sentence1)
-                            if story[depth].sentence2 == ''
+                            input(type='hidden' name='sentence1' value=story[index].sentence1)
+                            if story[index].sentence2.text == ''
                                 div.input
                                     textarea(name="sentence2")
                                 input(value='Submit' type='submit')
                             else
                                 div.text-center
                                 p  
-                                - var next = story.length + 1
-                                a(href='/'+ next)  #{story[depth].sentence2}
+                                a(href='/'+ story[index].sentence2.next) #{story[index].sentence2.text}
                             br
-                            input(type='hidden' name='sentence3' value=story[depth].sentence3)
-                            input(type='hidden' name='sentence4' value=story[depth].sentence4)
-                            input(type='hidden' name='parent' value=story[depth].parent)
-                            input(type='hidden' name='root' value=story[depth].root)
+                            input(type='hidden' name='sentence3' value=story[index].sentence3)
+                            input(type='hidden' name='sentence4' value=story[index].sentence4)
+                            input(type='hidden' name='root' value=story[index].root)
                     td 
                         div.text-center
-                        p  #{story[depth].root}
-                        div.text-center
-                        p  #{depth}
+                        p  #{story[index].root.text}
                     td 
-                        form(action='/'+depth method='POST')
-                            input(type='hidden' name='sentence1' value=story[depth].sentence1)
-                            input(type='hidden' name='sentence2' value=story[depth].sentence2)
-                            if story[depth].sentence3 == ''
+                        form(action='/'+ parseInt(index) +'/3' method='POST')
+                            input(type='hidden' name='sentence1' value=story[index].sentence1)
+                            input(type='hidden' name='sentence2' value=story[index].sentence2)
+                            if story[index].sentence3.text == ''
                                 div.input
                                     textarea(name="sentence3")
                                 br
                                 input(value='Submit' type='submit')
                             else
                                 div.text-center
-                                p  #{story[depth].sentence3}
-                            input(type='hidden' name='sentence4' value=story[depth].sentence4)
-                            input(type='hidden' name='parent' value=story[depth].parent)
-                            input(type='hidden' name='root' value=story[depth].root)
+                                a(href='/'+ story[index].sentence3.next) #{story[index].sentence3.text}
+                            input(type='hidden' name='sentence4' value=story[index].sentence4)
+                            input(type='hidden' name='root' value=story[index].root)
                 tr
                     td
                     td 
-                        form(action='/'+depth method='POST')
-                            input(type='hidden' name='sentence1' value=story[depth].sentence1)
-                            input(type='hidden' name='sentence2' value=story[depth].sentence2)
-                            input(type='hidden' name='sentence3' value=story[depth].sentence3)
-                            if story[depth].sentence4 == ''
+                        form(action='/'+ parseInt(index) +'/4' method='POST')
+                            input(type='hidden' name='sentence1' value=story[index].sentence1)
+                            input(type='hidden' name='sentence2' value=story[index].sentence2)
+                            input(type='hidden' name='sentence3' value=story[index].sentence3)
+                            if story[index].sentence4.text == ''
                                 div.input
                                     textarea(name="sentence4")
                                 br
                                 input(value='Submit' type='submit')
                             else
                                 div.text-center
-                                p  #{story[depth].sentence4}
-                            input(type='hidden' name='parent' value=story[depth].parent)
-                            input(type='hidden' name='root' value=story[depth].root)
+                                a(href='/'+ story[index].sentence4.next) #{story[index].sentence4.text}
+                            input(type='hidden' name='root' value=story[index].root)
                     td 
                 tr
+
+a(href='/')  Back to Start
+    table(style='width:50%' border='1')
+        tbody
+            tr
+                td 
+                td 
+                    form(action=`/` + parseInt(index) + '/1' method='POST')
+
+                        if story[index].sentences[0].text == ''
+                            div.input
+                                textarea(name="sentence1")
+                            input(value='Submit' type='submit')
+                        else
+                            div.text-center
+                            p  
+                            a(href='/'+ story[index].sentence1.next)  #{story[index].sentence1.text}
+                        br
+
+                        input(type='hidden' name='sentence2' value=story[index].sentence2)
+                        input(type='hidden' name='sentence3' value=story[index].sentence3)
+                        input(type='hidden' name='sentence4' value=story[index].sentence4)
+                        input(type='hidden' name='root' value=story[index].root)
+                        input(type='hidden' name='index' value=index)
+                td 
+            tr
+                td 
+                    form(action='/'+ parseInt(index) +'/2' method='POST')
+
+                        input(type='hidden' name='sentence1' value=story[index].sentence1)
+                        if story[index].sentence2.text == ''
+                            div.input
+                                textarea(name="sentence2")
+                            input(value='Submit' type='submit')
+                        else
+                            div.text-center
+                            p  
+                            a(href='/'+ story[index].sentence2.next) #{story[index].sentence2.text}
+                        br
+                        input(type='hidden' name='sentence3' value=story[index].sentence3)
+                        input(type='hidden' name='sentence4' value=story[index].sentence4)
+                        input(type='hidden' name='root' value=story[index].root)
+                td 
+                    div.text-center
+                    p  #{story[index].root.text}
+                td 
+                    form(action='/'+ parseInt(index) +'/3' method='POST')
+                        input(type='hidden' name='sentence1' value=story[index].sentence1)
+                        input(type='hidden' name='sentence2' value=story[index].sentence2)
+                        if story[index].sentence3.text == ''
+                            div.input
+                                textarea(name="sentence3")
+                            br
+                            input(value='Submit' type='submit')
+                        else
+                            div.text-center
+                            a(href='/'+ story[index].sentence3.next) #{story[index].sentence3.text}
+                        input(type='hidden' name='sentence4' value=story[index].sentence4)
+                        input(type='hidden' name='root' value=story[index].root)
+            tr
+                td
+                td 
+                    form(action='/'+ parseInt(index) +'/4' method='POST')
+                        input(type='hidden' name='sentence1' value=story[index].sentence1)
+                        input(type='hidden' name='sentence2' value=story[index].sentence2)
+                        input(type='hidden' name='sentence3' value=story[index].sentence3)
+                        if story[index].sentence4.text == ''
+                            div.input
+                                textarea(name="sentence4")
+                            br
+                            input(value='Submit' type='submit')
+                        else
+                            div.text-center
+                            a(href='/'+ story[index].sentence4.next) #{story[index].sentence4.text}
+                        input(type='hidden' name='root' value=story[index].root)
+                td 
+            tr
 
