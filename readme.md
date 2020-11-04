@@ -1,4 +1,4 @@
-# story
+# Story
 
 ## Description
 ____________________________________________________________________
@@ -38,7 +38,8 @@ ____________________________________________________________________
 ____________________________________________________________________
 <ol>
 <li>Me!</li>
-<li></li>
-<li>Me!</li>
-<li>Me!</li>
+<li>Ability to create a minimum viable product within a short deadline</li>
+<li>Knowledge of REST principles and best practices</li>
+<li>Efficient use of data structures</li>
+<li>Delivering the requirements as described</li>
 </ol>
