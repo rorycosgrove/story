@@ -38,5 +38,5 @@ Keep it simple and as clean as possible in the time available.
 <li>Working without client side JavaScript</li>
 <li>Knowledge of REST principles and best practices</li>
 <li>Efficient use of data structures</li>
-<li>Paying attention to the restrictions so as to deliver the requirements as perscribed</li>
+<li>Awareness of restrictions so the requirements can be delivered as perscribed</li>
 </ol>
