@@ -24,8 +24,7 @@ app.get(`/:index`, async (req, res) => {
 app.post(`/:index/:sentence`, async (req, res) => {
     let currentIndex = (req.params.index == null ? 0 : parseInt(req.params.index))
     let currentSentence = (req.params.sentence == null ? 0 : parseInt(req.params.sentence))
-    let update = 
-    new Paragraph(
+    let update = new Paragraph(
         req.body.index,
         new Sentence(JSON.parse(req.body.root).text),
         new Sentence(story[currentIndex].sentence1.text, story[currentIndex].sentence1.next),
@@ -52,7 +51,6 @@ app.post(`/:index/:sentence`, async (req, res) => {
             break
     }
     story[currentIndex] = update
-    console.log(story)
     res.render('index', { title: 'Post ', story: story, index: currentIndex })
 })
 app.listen(port, () => console.log("listening on port " + port))
